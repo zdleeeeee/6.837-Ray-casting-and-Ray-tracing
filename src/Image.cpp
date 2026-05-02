@@ -7,6 +7,7 @@
 
 #include "stb_image.h"
 #include "stb_image_write.h"
+#include <cstdint>
 
 static
 uint8_t

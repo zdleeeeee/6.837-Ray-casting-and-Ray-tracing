@@ -1,0 +1,6 @@
+/mnt/e/csd3.2/计算机图形学/Project/Project2/starter2/build/CMakeFiles/a2.dir
+/mnt/e/csd3.2/计算机图形学/Project/Project2/starter2/build/CMakeFiles/edit_cache.dir
+/mnt/e/csd3.2/计算机图形学/Project/Project2/starter2/build/CMakeFiles/rebuild_cache.dir
+/mnt/e/csd3.2/计算机图形学/Project/Project2/starter2/build/vecmath/CMakeFiles/vecmath.dir
+/mnt/e/csd3.2/计算机图形学/Project/Project2/starter2/build/vecmath/CMakeFiles/edit_cache.dir
+/mnt/e/csd3.2/计算机图形学/Project/Project2/starter2/build/vecmath/CMakeFiles/rebuild_cache.dir

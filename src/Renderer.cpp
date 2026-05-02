@@ -78,9 +78,37 @@ Renderer::traceRay(const Ray &r,
 
     // TODO: IMPLEMENT 
     if (_scene.getGroup()->intersect(r, tmin, h)) {
-        return h.getMaterial()->getDiffuseColor();
+        // 获取材质
+        Material* material = h.getMaterial();
+
+        // 获取交点坐标
+        Vector3f hitPoint = r.pointAtParameter(h.getT());
+        
+        // 遍历所有光源，累加漫反射和镜面反射
+        Vector3f directLight = Vector3f::ZERO;
+        int numLights = _scene.getNumLights();
+        for (int i = 0; i < numLights; i++) {
+            // 获取从交点到光源的方向、光照强度、距离
+            Light* light = _scene.getLight(i);
+            Vector3f toLight;
+            Vector3f lightIntensity;
+            float distToLight;
+            
+            light->getIllumination(hitPoint, toLight, lightIntensity, distToLight);
+            
+            // 调用 Material::shade() 计算该光源的贡献
+            Vector3f lightContribution = material->shade(r, h, toLight, lightIntensity);
+            directLight += lightContribution;
+        }
+        
+        // 获取环境光
+        Vector3f ambient = _scene.getAmbientLight();
+
+        // 最终颜色 = 环境光 + 直接光照
+        return ambient + directLight;
     } else {
-        return Vector3f(0, 0, 0);
+        // 返回背景色
+        return _scene.getBackgroundColor(r.getDirection());
     };
 }
 

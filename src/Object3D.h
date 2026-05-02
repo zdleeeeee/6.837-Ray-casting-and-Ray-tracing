@@ -86,6 +86,8 @@ public:
 
 private:
     // TOOD fill in members
+    Vector3f _normal;
+    float _d;
 };
 
 
@@ -141,7 +143,10 @@ public:
     virtual bool intersect(const Ray &r, float tmin, Hit &h) const override;
 
 private:
-    Object3D *_object; //un-transformed object  
+    Object3D *_object; //un-transformed object
+    Matrix4f _matrix;
+    Matrix4f _invMatrix;
+    Matrix4f _invTranspose;
 };
 
 

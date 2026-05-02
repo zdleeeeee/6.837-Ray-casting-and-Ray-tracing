@@ -20,5 +20,26 @@
     {
         // TODO Implement point light source
         // tolight, intensity, distToLight are outputs
+
+        // BEGIN STARTER
+
+        // the direction to the light is the vector from the point
+        // to the Light point
+        tolight = _position - p;
+
+        // compute the distance to the light
+        distToLight = tolight.abs();
+        
+        // normalize the direction vector
+        tolight = tolight.normalized();
+        
+        // compute the intensity of the light
+        float attenuation = _falloff * distToLight * distToLight;
+        // avoid division by zero
+        if (attenuation < 1e-6) {
+            attenuation = 1e-6;
+        }
+        intensity = _color / attenuation;
+        // END STARTER
     }
 

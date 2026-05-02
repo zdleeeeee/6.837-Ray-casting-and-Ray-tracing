@@ -1,3 +1,4 @@
+#include <cstdint>
 #ifndef OCTREE_HPP
 #define OCTREE_HPP
 
