@@ -1,0 +1,44 @@
+#include "Light.h"
+    void DirectionalLight::getIllumination(const Vector3f &p, 
+                                 Vector3f &tolight, 
+                                 Vector3f &intensity, 
+                                 float &distToLight) const
+    {
+        // the direction to the light is the opposite of the
+        // direction of the directional light source
+
+        // BEGIN STARTER
+        tolight = -_direction;
+        intensity  = _color;
+        distToLight = std::numeric_limits<float>::max();
+        // END STARTER
+    }
+    void PointLight::getIllumination(const Vector3f &p, 
+                                 Vector3f &tolight, 
+                                 Vector3f &intensity, 
+                                 float &distToLight) const
+    {
+        // TODO Implement point light source
+        // tolight, intensity, distToLight are outputs
+
+        // BEGIN STARTER
+
+        // the direction to the light is the vector from the point
+        // to the Light point
+        tolight = _position - p;
+
+        // compute the distance to the light
+        distToLight = tolight.abs();
+        
+        // normalize the direction vector
+        tolight = tolight.normalized();
+        
+        // compute the intensity of the light
+        float attenuation = _falloff * distToLight * distToLight;
+        // avoid division by zero
+        if (attenuation < 1e-6) {
+            attenuation = 1e-6;
+        }
+        intensity = _color / attenuation;
+        // END STARTER
+    }
